@@ -1,0 +1,71 @@
+<div style="text-align: center;">
+
+    <h2>DULCERÍA BALBUENA</h2>
+    <h2>Sistema de Almacen e Invetario</h2>
+    <button type="button" class="btn btn-success" (click)="open(content)">Crear Registro</button>
+
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Producto</th>
+                <th>Inventario</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of collection.data ">
+                <td>{{item.id}}</td>
+                <td>{{item.producto}}</td>
+                <td>{{item.inventario}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" (click)="openEditar(content,item)">Editar</button>
+                    <button type="button" class="btn btn-danger" (click)="eliminar(item)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Registrar inventario</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+
+
+                    <form [formGroup]="productoForm">
+
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input type="number" formControlName="id" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Producto</label>
+                            <input type="text" formControlName="producto" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Inventario</label>
+                            <input type="text" formControlName="inventario" class="form-control">
+                        </div>
+
+                    </form>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="guardarInventario()" *ngIf="!actualizar">Guardar</button>
+            <button type="button" class="btn btn-outline-dark" (click)="actulizarInventario()" *ngIf="actualizar">Actualizar</button>
+        </div>
+    </ng-template>
+
+
+
+</div>
